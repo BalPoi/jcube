@@ -199,7 +199,7 @@ public class HelloApplication extends Application {
                 vertexVisible[i] = true;
 
                 screenX[i] = (xn + 1) * WIDTH / 2;
-                screenY[i] = (yn + 1) * HEIGHT / 2;
+                screenY[i] = -(yn + 1) * HEIGHT / 2;
                 pointSize[i] = 10 / Math.max(vertex.z(), 1);
             }
 

@@ -22,6 +22,11 @@ public class Vector3 implements Cloneable {
         return y;
     }
 
+    @Override
+    public String toString() {
+        return "(" + x + ", " + y + "," + z + ')';
+    }
+
     public void y(double y) {
         this.y = y;
     }
@@ -117,6 +122,18 @@ public class Vector3 implements Cloneable {
     public void rotateXat(double radian, Vector3 center) {
         this.sub(center);
         this.rotateX(radian);
+        this.add(center);
+    }
+
+    public void rotateYat(double radian, Vector3 center) {
+        this.sub(center);
+        this.rotateY(radian);
+        this.add(center);
+    }
+
+    public void rotateZat(double radian, Vector3 center) {
+        this.sub(center);
+        this.rotateZ(radian);
         this.add(center);
     }
 

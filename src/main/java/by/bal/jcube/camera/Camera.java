@@ -6,13 +6,11 @@ import lombok.Getter;
 import lombok.Setter;
 
 public class Camera {
-    @Getter
-    @Setter
-    private Vector3 position;
+    private static final double DEFAULT_FOV = Math.PI / 2;
 
     @Getter
     @Setter
-    private Vector3 target;
+    private Vector3 position;
 
     @Getter
     private double fov;
@@ -20,14 +18,15 @@ public class Camera {
 
 
     public Camera() {
-        this.position = new Vector3();
-        this.target = new Vector3(0, 0, -1);
-        setFov(Math.PI / 2);
+        this(new Vector3(), DEFAULT_FOV);
+    }
+
+    public Camera(Vector3 position) {
+        this(position, DEFAULT_FOV);
     }
 
     public Camera(Vector3 position, double fov) {
         this.position = position;
-        this.target = new Vector3(0, 0, -1);
         setFov(fov);
     }
 
