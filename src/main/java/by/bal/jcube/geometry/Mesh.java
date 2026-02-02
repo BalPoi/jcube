@@ -1,4 +1,7 @@
-package by.bal.jcube;
+package by.bal.jcube.geometry;
+
+import by.bal.jcube.geometry.vector.Vector2;
+import by.bal.jcube.geometry.vector.Vector3;
 
 public class Mesh implements Meshable {
     public Vector3[] vertices;
@@ -29,28 +32,28 @@ public class Mesh implements Meshable {
         }
 
         // Инициализируем начальными значениями из первой вершины
-        double minX = vertices[0].x;
-        double maxX = vertices[0].x;
-        double minY = vertices[0].y;
-        double maxY = vertices[0].y;
-        double minZ = vertices[0].z;
-        double maxZ = vertices[0].z;
+        double minX = vertices[0].x();
+        double maxX = vertices[0].x();
+        double minY = vertices[0].y();
+        double maxY = vertices[0].y();
+        double minZ = vertices[0].z();
+        double maxZ = vertices[0].z();
 
         // Находим минимумы и максимумы по всем вершинам
         for (int i = 1; i < vertices.length; i++) {
             Vector3 vertex = vertices[i];
 
             // X
-            if (vertex.x < minX) minX = vertex.x;
-            if (vertex.x > maxX) maxX = vertex.x;
+            if (vertex.x() < minX) minX = vertex.x();
+            if (vertex.x() > maxX) maxX = vertex.x();
 
             // Y
-            if (vertex.y < minY) minY = vertex.y;
-            if (vertex.y > maxY) maxY = vertex.y;
+            if (vertex.y() < minY) minY = vertex.y();
+            if (vertex.y() > maxY) maxY = vertex.y();
 
             // Z
-            if (vertex.z < minZ) minZ = vertex.z;
-            if (vertex.z > maxZ) maxZ = vertex.z;
+            if (vertex.z() < minZ) minZ = vertex.z();
+            if (vertex.z() > maxZ) maxZ = vertex.z();
         }
 
         // Центр AABB (ограничивающего параллелепипеда)

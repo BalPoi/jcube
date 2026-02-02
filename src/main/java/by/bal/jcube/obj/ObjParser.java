@@ -1,7 +1,11 @@
-package by.bal.jcube;
+package by.bal.jcube.obj;
+
+import by.bal.jcube.geometry.Mesh;
+import by.bal.jcube.geometry.Meshable;
+import by.bal.jcube.geometry.vector.Vector2;
+import by.bal.jcube.geometry.vector.Vector3;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -68,7 +72,7 @@ public class ObjParser {
         edges = extractEdgesFromFaces(faces);
 
         return new Mesh(vertices.toArray(new Vector3[0]),
-                            edges.toArray(new Vector2[0]));
+                        edges.toArray(new Vector2[0]));
     }
 
     private static List<Vector2> extractEdgesFromFaces(List<List<Integer>> faces) {

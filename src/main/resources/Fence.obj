@@ -1,6 +1,6 @@
 # Blender v2.93.0 OBJ File: 'Fence_GameReady.blend'
 # www.blender.org
-mtllib Fence_GameReady.mtl
+mtllib GargoneFace.mtl
 o Fence_Base_02_Cube.001
 v 1.295871 -0.006234 -0.432028
 v 1.502546 0.648853 -0.208748
