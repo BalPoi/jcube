@@ -1,1 +1,1 @@
-![screenshot][https://github.com/BalPoi/jcube/raw/master/screen.png]
+![screenshot][https://raw.githubusercontent.com/BalPoi/jcube/master/screen.png]
