@@ -73,15 +73,52 @@ public class Mesh implements Meshable {
         return new Bounds(minX, minY, minZ, maxX, maxY, maxZ);
     }
 
-    // @Override
     public void normalize() {
         Bounds bounds = calcBounds();
-        double maxX = bounds.maxX();
-        double maxY = bounds.maxY();
-        double maxZ = bounds.maxZ();
-        for (int i = 0; i < vertices.length; i++) {
-            vertices[i].div(Vec.of(maxX, maxY, maxZ));
-        }
+        final Vector3 center = getCenter();
+        double sizeX = bounds.maxX() - bounds.minX();
+        double sizeY = bounds.maxY() - bounds.minY();
+        double sizeZ = bounds.maxZ() - bounds.minZ();
 
+        double maxSize = Math.max(Math.max(sizeX, sizeY), sizeZ);
+        if (maxSize == 0.0) return;
+
+        final double scale = 1.0 / maxSize; // коэффициент уменьшения (или увеличения)
+
+        for (Vector3 vertex : vertices) {
+            vertex.sub(center);
+            vertex.mulScalar(scale);
+            vertex.add(center);
+        }
     }
+
+    public void setCenter(Vector3 newCenter) {
+        Vector3 currCenter = getCenter();
+        Vector3 offset = Vec.of(newCenter.x() - currCenter.x(),
+                                newCenter.y() - currCenter.y(),
+                                newCenter.z() - currCenter.z());
+
+        currCenter.add(offset);
+
+        for (Vector3 vertex : vertices) {
+            vertex.add(offset);
+        }
+    }
+
+    public void scale(double scale) {
+        final Vector3 center = getCenter();
+        for (Vector3 vertex : vertices) {
+            vertex.sub(center);
+            vertex.mulScalar(scale);
+            vertex.add(center);
+        }
+    }
+
+    public void rotateX(double deg) {
+        final Vector3 center = getCenter();
+        for (Vector3 vertex : vertices) {
+            vertex.rotateXat(deg, center);
+        }
+    }
+
 }

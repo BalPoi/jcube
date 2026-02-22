@@ -1,8 +1,8 @@
 package by.bal.jcube;
 
 import by.bal.jcube.camera.Camera;
+import by.bal.jcube.geometry.Mesh;
 import by.bal.jcube.geometry.Meshable;
-import by.bal.jcube.geometry.Parallelepiped;
 import by.bal.jcube.geometry.vector.Vec;
 import by.bal.jcube.geometry.vector.Vector2;
 import by.bal.jcube.geometry.vector.Vector3;
@@ -23,7 +23,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Random;
 
 public class JcubeApplication extends Application {
     public static final int WIDTH = 1600;
@@ -89,47 +88,11 @@ public class JcubeApplication extends Application {
     }
 
     private void initMeshes() throws IOException {
-        // Cube cube = new Cube(Vec.of(0, 0, 3));
-        // meshes.add(cube);
-
-        // Parallelepiped parall = new Parallelepiped(Vec.of(1, 2, 2), Vec.of(1, 1, 4));
-        // meshes.add(parall);
-
-
-        // Random rnd = new Random();
-        // for (int i = 0; i < 10; i++) {
-        //     meshes.add(new Parallelepiped(
-        //             Vec.of(rnd.nextInt(1, 3), rnd.nextInt(1, 3), rnd.nextInt(3, 6)),
-        //             Vec.of(rnd.nextInt(-6,6), rnd.nextInt(-6,6), rnd.nextInt(3, 20)))
-        //     );
-        // }
-
-        // Meshable mesh = ObjParser.loadMesh("Fence.obj");
-        // Meshable mesh = ObjParser.loadMesh("GargoneFace.obj");
-        Meshable mesh = ObjParser.loadMesh("darina2.obj");
-        // double scale = 0.1;
-        Vector3 center = mesh.getCenter();
-        Vector3[] vertices = mesh.getVertices();
-        // center.mulScalar(scale);
-        // for (Vector3 vertex : vertices) {
-        //     vertex.mulScalar(scale);
-        // }
-
-
-        Vector3 offset = Vec.of(-center.x(), -center.y(), -center.z() + 100);
-
-        center.add(offset);
-
-        for (Vector3 vertex : vertices) {
-            vertex.add(offset);
-
-            // vertex.sub(center);
-            // vertex.rotateX(Math.PI / 2);
-            // vertex.rotateY(Math.PI);
-            // vertex.add(center);
-
-        }
-
+        Mesh mesh = (Mesh) ObjParser.loadMesh("GargoneFace.obj");
+        mesh.normalize();
+        mesh.scale(10);
+        mesh.rotateX(-Math.PI / 2);
+        mesh.setCenter(Vec.of(0, 0, 10));
         meshes.add(mesh);
     }
 
