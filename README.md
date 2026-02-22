@@ -1,1 +1,1 @@
-![screenshot](https://raw.githubusercontent.com/BalPoi/jcube/master/screen.png)
+![screenshot](screen.png)
